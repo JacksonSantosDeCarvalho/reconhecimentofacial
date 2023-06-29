@@ -40,6 +40,7 @@ public class Captura {
             camera.start();
 
             CascadeClassifier detectorFace = new CascadeClassifier("src/main/java/recursos/haarcascade-frontalface.xml");
+
             Mat imagemColorida = new Mat();
 
             int numeroAmostrarTreinamento = 20;
@@ -63,6 +64,12 @@ public class Captura {
                 RectVector facesDetectadas = new RectVector();
 
                 detectorFace.detectMultiScale(imagemCinza, facesDetectadas, 1.1, 1, 0, new Size(150, 150), new Size(500, 500));
+
+                if (tecla == null) {
+
+                    tecla = cFrame.waitKey(5);
+
+                }
 
                 for (int i = 0; i < facesDetectadas.size(); i++) {
 
@@ -92,10 +99,13 @@ public class Captura {
 
                         }
 
+                        tecla = null;
+
                     }
 
-                    
-
+                }
+                if (tecla == null) {
+                    tecla = cFrame.waitKey(20);
                 }
                 if (contador > 25) {
 
